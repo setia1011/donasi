@@ -19,7 +19,7 @@
                                         <?= $this->session->tempdata('message'); ?>
                                     </div>
                                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url('User/formDonasi2'); ?>" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="id_user" value="<?= $user['id_user'] ?>" required class="form-control ">
+                                        <input type="hidden" name="id_user" value="<?= $id_user = $user['id_user'] ?? ""; ?>" required class="form-control ">
                                         <input type="hidden" name="id_penggalangan" value="<?= $id_penggalangan; ?>" required class="form-control ">
                                         <button type="button" class="btn btn-secondary mt-3 mb-3" style="width: 100%;" data-toggle="modal" data-target=".metodePembayaran">Metode Pembayaran</button>
                                         <?php
@@ -58,14 +58,14 @@
                                             <div class="col-md-12 col-sm-12 ">
                                                 <label>Nama
                                                 </label>
-                                                <input type="text" name="nama" value="<?= $user['nama'] ?>" required readonly class="form-control ">
+                                                <input type="text" name="nama" value="<?= $nama = $user['nama'] ?? "" ?>" required class="form-control ">
                                             </div>
                                         </div>
                                         <div class="item form-group mt-2 mb-2">
                                             <div class="col-md-12 col-sm-12 ">
                                                 <label>Email
                                                 </label>
-                                                <input type="text" name="nama" value="<?= $user['email'] ?>" required readonly class="form-control ">
+                                                <input type="text" name="nama" value="<?= $email = $user['email'] ?? ""; ?>" required class="form-control ">
                                             </div>
                                         </div>
                                         <div class="item form-group">

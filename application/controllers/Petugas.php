@@ -500,16 +500,15 @@ class Petugas extends CI_Controller
 		$waktu_penggalangan = $this->input->post('waktu_penggalangan');
 
 		$data = array(
-
 			"judul" => $judul,
 			"kategori" => $kategori,
 			"total_harapan" => $total_harapan,
 			"bar" => $bar,
 			"waktu_penggalangan" => $waktu_penggalangan
-
-
 		);
 
+		print_r($data);
+		die();
 		$this->db->where('id_penggalangan', $id_penggalangan);
 		$this->db->update('tbl_penggalangan', $data );
 		$this->session->set_tempdata('message', '<div class="alert alert-warning alert-dismissible " role="alert" style="color:white;">Data Berhasil di Edit</div>', 3);
@@ -594,13 +593,16 @@ class Petugas extends CI_Controller
 		$id_penggalangan = $_POST['id_penggalangan'];
 		$keterangan = $_POST['keterangan'];
 		$jumlah = $_POST['jumlah'];
+		$tgl_penyaluran = $_POST['tgl_penyaluran'];
 
 		$data = array(
-
 			"id_penggalangan" => $id_penggalangan,
 			"keterangan" => $keterangan,
-			"jumlah" => $jumlah
+			"jumlah" => $jumlah,
+			"tgl_penyaluran" => $tgl_penyaluran
 		);
+
+		// print_r($data);
 
 		$this->db->where('id_penyaluran', $id_penyaluran);
 		$this->db->update('tbl_penyaluran', $data );

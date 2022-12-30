@@ -15,44 +15,84 @@
                         <div class="card card-bg h-100 px-4 px-md-2 px-lg-3 px-xxl-4 pt-4">
                             <div class="card-body text-center text-md-start">
                                 <div class="col-lg-12">
+                                    <?php if (isset($_SESSION['nama'])) { ?>
+                                        <table width="100%" style="text-align: left;">
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>: <?= $user['nama'] ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <th>: <?= $user['email'] ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal Lahir</th>
+                                                <th>: <?= date('d F Y', strtotime($user['tgl_lahir']))  ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Jenis Kelamin</th>
+                                                <th>: <?= $user['jk'] ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Nomor Telpon</th>
+                                                <th>: <?= $user['no_telpon'] ?></th>
+                                            </tr>
+                                            <!-- <tr>
+                                                <th>Password</th>
+                                                <th>: <?= $user['password'] ?></th>
+                                            </tr> -->
 
-                                    <table width="100%" style="text-align: left;">
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>: <?= $user['nama'] ?></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Email</th>
-                                            <th>: <?= $user['email'] ?></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Tanggal Lahir</th>
-                                            <th>: <?= date('d F Y', strtotime($user['tgl_lahir']))  ?></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Jenis Kelamin</th>
-                                            <th>: <?= $user['jk'] ?></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Nomor Telpon</th>
-                                            <th>: <?= $user['no_telpon'] ?></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Password</th>
-                                            <th>: <?= $user['password'] ?></th>
-                                        </tr>
+                                            <?php
+                                                $iduser = $user['id_user'];
+                                                $total = $this->db->query("SELECT SUM(nominal) AS total FROM `tbl_donasi` WHERE id_user = $iduser AND status = 'Diterima' ")->row_array();
+                                            ?>
+                                            <tr>
+                                                <th>Total Donasi</th>
+                                                <th>: Rp. <?= number_format($total['total'],0,',','.'); ?></th>
+                                            </tr>
 
-                                        <?php
-                                            $iduser = $user['id_user'];
-                                            $total = $this->db->query("SELECT SUM(nominal) AS total FROM `tbl_donasi` WHERE id_user = $iduser AND status = 'Diterima' ")->row_array();
-                                        ?>
-                                        <tr>
-                                            <th>Total Donasi</th>
-                                            <th>: Rp. <?= number_format($total['total'],0,',','.'); ?></th>
-                                        </tr>
+                                        </table>
+                                    <?php } else { ?>
+                                        <table width="100%" style="text-align: left;">
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>: <?= $user['nama'] ?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <th>: -</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal Lahir</th>
+                                                <th>: -</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Jenis Kelamin</th>
+                                                <th>: -</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Nomor Telpon</th>
+                                                <th>: -</th>
+                                            </tr>
 
-                                    </table>
-                                    <button type="button" class="btn btn-secondary mt-3 mb-3 ml-3" style="float: right;" data-toggle="modal" data-target=".modalEditProfil">Edit Profil</button>
+                                            <?php
+                                                $iduser = $user['id_user'];
+                                                $total = $this->db->query("SELECT SUM(nominal) AS total FROM `tbl_donasi` WHERE id_user = $iduser AND status = 'Diterima' ")->row_array();
+                                            ?>
+                                            <tr>
+                                                <th>Total Donasi</th>
+                                                <th>: Rp. <?= number_format($total['total'],0,',','.'); ?></th>
+                                            </tr>
+
+                                        </table>
+                                    <?php } ?>
+                                    
+                                    <?php if (isset($_SESSION['nama'])) { ?>
+                                        <button type="button" class="btn btn-secondary mt-3 mb-3 ml-3" style="float: right;" data-toggle="modal" data-target=".modalEditProfil">Edit Profil</button>
+                                    <?php } else { ?>
+
+                                    <?php } ?>
+                                    
                                 </div>
                             </div>
                         </div>

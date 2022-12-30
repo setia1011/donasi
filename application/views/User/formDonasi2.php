@@ -7,7 +7,7 @@
     <form id="payment-form" method="post" action="<?=site_url()?>/snap/finish">
         <input type="hidden" name="result_type" id="result-type" value=""></div>
         <input type="hidden" name="result_data" id="result-data" value=""></div>
-        <input type="hidden" name="id_user" value="<?= $user['id_user'] ?>" required class="form-control ">
+        <input type="hidden" name="id_user" value="<?php if (isset($user['id_user'])) {$user['id_user'];} else {echo 0;} ?>" required class="form-control ">
         <input type="hidden" name="id_penggalangan" value="<?= $id_penggalangan; ?>" required class="form-control ">
         <input class="form-control " type="hidden" name="nominal" value="<?= $nominal; ?>" required>
         <input class="form-control " type="hidden" name="isidoa" id="isidoa" required>
@@ -32,7 +32,7 @@
                                         <?= $this->session->tempdata('message'); ?>
                                     </div>
                                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url('User/addDonasiUser'); ?>" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="id_user" value="<?= $user['id_user'] ?>" required class="form-control ">
+                                        <input type="hidden" name="id_user" value="<?php if (isset($user['id_user'])) {$user['id_user'];} else {echo 0;} ?>" required class="form-control ">
                                         <input type="hidden" name="id_penggalangan" value="<?= $id_penggalangan; ?>" required class="form-control ">
 
                                         <?php

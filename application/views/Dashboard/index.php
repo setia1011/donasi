@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#ffffff">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>">
 
   <title>Donasi</title>
 
@@ -18,7 +18,7 @@
 
       .carousel-inner img {
 
-        height: 1000px;
+        max-height: 600px;
 
       }
 
@@ -125,7 +125,7 @@
       </table>
     </section>
 
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
@@ -135,7 +135,7 @@
       <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
-      <script src="<?= base_url() ?>assets/js/plugins/jquery.dataTables.min.js"></script>
+      <script src="<?= base_url('assets/vendors/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
       <script type="text/javascript">
           $('#table_id').DataTable({
               dom: 'lBfrtip',
@@ -245,41 +245,41 @@
 
 
     <section class="py-0" id="service">
+      <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <?php
+                  foreach ($banners as $key => $value) : ?>
+                    <?php
+                      $active = $key == 0 ? 'active' : '';
+                    ?>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $active?>"></li>
+                  
+                  <?php endforeach; ?>
+                  
+                  <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                </ol>
 
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          
-          <?php
-          foreach ($banners as $key => $value) : ?>
-            <?php
-              $active = $key == 0 ? 'active' : '';
-            ?>
-            <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $active?>"></li>
-          
-          <?php endforeach; ?>
-          
-          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-          
-        </ol>
-        <div class="carousel-inner">
-          
-          <?php
-          foreach ($banners as $key => $value) : ?>
-          <?php
-              $active = $key == 0 ? 'active' : '';
-            ?>
-            <div class="carousel-item <?= $active?>">
-              <img class="d-block w-100" src="<?= base_url('assets/images/'. $value['gambar']) ?>" alt="First slide">
+                <div class="carousel-inner">
+                  <?php
+                  foreach ($banners as $key => $value) : ?>
+                  <?php
+                      $active = $key == 0 ? 'active' : '';
+                    ?>
+                    <div class="carousel-item <?= $active?>">
+                      <img class="d-block w-100" src="<?= base_url('assets/images/'. $value['gambar']) ?>" alt="First slide">
+                    </div>
+                  <?php endforeach; ?>
+
+                </div>
+              </div>
             </div>
-          <?php endforeach; ?>
-
-        </div>
+          </div>
       </div>
-
-      <!-- end of .container-->
-
     </section>
 
     <section class="py-0" id="service">

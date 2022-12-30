@@ -1,9 +1,9 @@
 <?php
-if ($this->session->userdata('user')) {
-  $this->session->userdata('user', 'Success as a user.');
-} else {
-  redirect('Login');
-}
+// if ($this->session->userdata('user')) {
+//   $this->session->userdata('user', 'Success as a user.');
+// } else {
+//   redirect('Login');
+// }
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,7 +18,7 @@ if ($this->session->userdata('user')) {
   
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>">
 
   <title>Donasi</title>
 
@@ -57,10 +57,11 @@ if ($this->session->userdata('user')) {
             <a class="nav-link fw-medium active" aria-current="page" href="<?= site_url('User') ?>">Home</a>
             <a class="nav-link" href="<?= site_url('User/penggalanganDana') ?>">Donasi</a>
           </ul>
-          <h5 class="nav-link">Selamat Datang, <?= $user['nama'] ?></h5>
-          <a href="<?php echo site_url('User/profil'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Profil</span></a>
-          <a href="<?= site_url('Login/logout') ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Logout</span></a>
-
+          <h5 class="nav-link">Selamat datang, <?= $var = $user['nama'] ?? "Donatur"; ?></h5>
+          <?php if ($this->session->userdata('user')) { ?>
+            <a href="<?php echo site_url('User/profil'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Profil</span></a>
+            <a href="<?= site_url('Login/logout') ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Logout</span></a>
+          <?php } ?>
         </div>
       </div>
     </nav>

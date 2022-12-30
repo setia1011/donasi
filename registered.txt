@@ -1,0 +1,17 @@
+frame donasi (regsitered user)
+
+participant form1
+participant form2
+database database #orange
+participant profil
+
+note over form1: input nama,\nemail, nominal
+form1->form2:kirim data
+destroysilent form1
+note over form2: input catatan/doa,\nbukti transfer
+form2->database: kirim data
+destroysilent form2
+database-->profil: kirim sukses
+destroysilent database
+note over profil: List donasi user
+destroysilent profil

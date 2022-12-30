@@ -38,11 +38,15 @@ class User extends CI_Controller
 	}
 
 	public function profil(){
+		$namax = $this->session->userdata('nama');
+		if (!isset($_SESSION['nama'])) {
+			$namax = "Donatur";
+		}
 
 		$data['title'] = 'My Profile';
-		$data['user'] = $this->db->get_where('tbl_user', ['nama' => $this->session->userdata('nama')])->row_array();
+		$data['user'] = $this->db->get_where('tbl_user', ['nama' => $namax])->row_array();
 
-		$user = $this->db->get_where('tbl_user', ['nama' => $this->session->userdata('nama')])->row_array();
+		$user = $this->db->get_where('tbl_user', ['nama' => $namax])->row_array();
 
 		$getIdUser = $user['id_user'];
 
@@ -187,6 +191,9 @@ class User extends CI_Controller
 	public function addDonasiUser(){
 
 		$id_user = $_POST['id_user'];
+		if ($id_user == 0) {
+			$id_user = 14;
+		}
 		$id_penggalangan = $_POST['id_penggalangan'];
 		$nominal = $_POST['nominal'];
 		$doa = $_POST['doa'];
