@@ -13,6 +13,9 @@
   <title>Donasi</title>
 
   <style>
+    .dropdown-menu {
+      top: 162% !important;
+    }
     /* Large devices (laptops/desktops, 992px and up) */
     @media only screen and (min-width: 992px) {
 
@@ -28,7 +31,7 @@
 
 
   <link rel="stylesheet" href="<?php echo base_url('assets/assets2/css/theme.css'); ?>">
-
+  <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
 
 </head>
 
@@ -49,9 +52,18 @@
             <a href="<?php echo site_url('Login'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Sign in</span></a>
             <a href="<?php echo site_url('Login/register'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Sign up</span></a>
             <a href="<?php echo site_url('Dashboard'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Home</span></a>
-            <button id="testbtnlagi" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">
+            <!-- <button id="testbtnlagi" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">
               Cetak Laporan
-            </button>
+            </button> -->
+            <div class="dropdown d-inline">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Download
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <button class="dropdown-item" onclick="csvLaporan('donasi')">Laporan Donasi</button>
+                <button class="dropdown-item" onclick="csvLaporan('penyaluran')">Laporan Penyaluran</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -124,8 +136,6 @@
           </tbody>
       </table>
     </section>
-
-      <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
@@ -226,6 +236,29 @@
           });
       </script>
 
+      <script>
+        function csvLaporan(v) {
+          var csvl = $('#csvlaporan');
+          $.ajax({
+          type: 'POST',
+          url: 'dashboard/csvLaporan',
+          data: {
+            ref: v
+          },
+          success: function(res) {
+            if (res.filename != undefined && res.filename.length > 0) {
+              if (v == 'donasi') {
+                window.open('assets/laporan/donasi.csv');
+              }
+              if (v == 'penyaluran') {
+                window.open('assets/laporan/penyaluran.csv');
+              }
+            }
+          },
+        });
+        }
+      </script>
+
       <script type="text/javascript">
         const testbtn = document.getElementById('testbtnlagi')
         const excel = document.getElementsByClassName('dt-button buttons-excel buttons-html5')
@@ -239,7 +272,7 @@
           laporan2.classList.remove('d-none')
           excel[1].click()
           laporan2.classList.add('d-none')
-        })
+        });
 
       </script>
 
@@ -391,10 +424,9 @@
   </main>
 
 
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 

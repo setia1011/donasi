@@ -21,6 +21,52 @@ class Dashboard extends CI_Controller {
 		$this->load->view('Dashboard/index', $data);
 	}
 
+	public function csvLaporan() {
+		$ref = $_POST['ref'];
+		if ($ref == 'donasi') {
+			$donatur = $this->db->query("SELECT
+			b.nama,
+			c.judul,
+			a.nominal,
+			a.status,
+			a.created_date
+			FROM `tbl_donasi` a
+				JOIN `tbl_user` b ON a.`id_user` = b.`id_user`
+				JOIN `tbl_penggalangan` c ON a.`id_penggalangan` = c.`id_penggalangan`")->result_array();
+
+			$file = fopen('assets/laporan/donasi.csv', 'w');
+			$header = array("Donatur","Penggalangan", "Nominal", "Status", "Tanggal Masuk"); 
+			fputcsv($file, $header);
+			foreach ($donatur as $key => $value) { 
+				fputcsv($file, $value); 
+			}
+			fclose($file);
+			$filex = 'assets/laporan/donasi.csv';
+			header('Content-Type: application/json');
+			echo json_encode(["filename" => basename($filex)]);
+		}
+		
+		if ($ref == 'penyaluran') {
+			$penyaluran = $this->db->query("SELECT
+				b.judul,
+				a.jumlah,
+				a.keterangan,
+				a.tgl_penyaluran
+				FROM `tbl_penyaluran` a
+					JOIN `tbl_penggalangan` b ON a.`id_penggalangan` = b.`id_penggalangan`;")->result_array();
+			$file = fopen('assets/laporan/penyaluran.csv', 'w');
+			$header = array("Penggalangan", "Nominal", "Keterangan", "Tanggal Penyaluran"); 
+			fputcsv($file, $header);
+			foreach ($penyaluran as $key => $value) { 
+				fputcsv($file, $value); 
+			}
+			fclose($file);
+			$filex = 'assets/laporan/penyaluran.csv';
+			header('Content-Type: application/json');
+			echo json_encode(["filename" => basename($filex)]);
+		}
+	}
+
 	public function detail(){
 
 		$data['title'] = 'Donasi';
