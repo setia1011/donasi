@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
 			c.judul,
 			a.nominal,
 			a.status,
-			a.created_date
+			DATE_FORMAT(a.created_date, '%d/%m/%Y') created_date
 			FROM `tbl_donasi` a
 				JOIN `tbl_user` b ON a.`id_user` = b.`id_user`
 				JOIN `tbl_penggalangan` c ON a.`id_penggalangan` = c.`id_penggalangan`")->result_array();
@@ -51,7 +51,7 @@ class Dashboard extends CI_Controller {
 				b.judul,
 				a.jumlah,
 				a.keterangan,
-				a.tgl_penyaluran
+				DATE_FORMAT(a.tgl_penyaluran, '%d/%m/%Y') tgl_penyaluran
 				FROM `tbl_penyaluran` a
 					JOIN `tbl_penggalangan` b ON a.`id_penggalangan` = b.`id_penggalangan`;")->result_array();
 			$file = fopen('assets/laporan/penyaluran.csv', 'w');
