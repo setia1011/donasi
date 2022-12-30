@@ -8,10 +8,12 @@
   <meta name="theme-color" content="#ffffff">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>">
+
 
   <title>Donasi</title>
-
+  <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/assets2/css/theme.css'); ?>">
+  <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
   <style>
     .dropdown-menu {
       top: 162% !important;
@@ -30,8 +32,7 @@
   </style>
 
 
-  <link rel="stylesheet" href="<?php echo base_url('assets/assets2/css/theme.css'); ?>">
-  <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
+ 
 
 </head>
 
@@ -52,9 +53,7 @@
             <a href="<?php echo site_url('Login'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Sign in</span></a>
             <a href="<?php echo site_url('Login/register'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Sign up</span></a>
             <a href="<?php echo site_url('Dashboard'); ?>" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">Home</span></a>
-            <!-- <button id="testbtnlagi" class="btn btn-light shadow-klean order-0"><span class="text-gradient fw-bold">
-              Cetak Laporan
-            </button> -->
+            <!-- Download -->
             <div class="dropdown d-inline">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Download
@@ -69,213 +68,27 @@
       </div>
     </nav>
 
-    <section class="d-none" id="laporan1">
-      <table id="table_id" class="table table-striped table-bordered" style="width:100%">
-          <thead>
-              <tr>
-                  <th>No</th>
-                  <th>Nama Donatur</th>
-                  <th>Penggalangan</th>
-                  <th>Kategori</th>
-                  <th>Nominal Donasi</th>
-                  <th>Status</th>
-                  <th>Tanggal Masuk</th>
-                  <!-- <th>Aksi</th> -->
-              </tr>
-          </thead>
-          <tbody>
-              <?php $i = 1;
-              foreach ($donatur as $value) : ?>
-                  <tr>
-                      <td><?= $i ?></td>
-                      <td><?= $value['nama'] ?></td>
-                      <td><?= $value['judul'] ?></td>
-                      <td><?= $value['kategori'] ?></td>
-                      <td>Rp<?= number_format($value['nominal'], 0, ',', '.') ?></td>
-                      <td><?= $value['status'] ?></td>
-                      <td><?= date('d F Y', strtotime($value['created_date'])) ?></td>
-                      <!-- <td>
-                          <a href="<?= site_url('Petugas/detailDonasi/') . $value['id_donasi']; ?>" class="badge badge-warning"><i class="fa fa-search" style="font-size: 15px; color: white;"></i></a>
-                          <a href="<?= site_url('Petugas/deleteDonasi/') . $value['id_donasi']; ?>" class="badge badge-danger" onclick="return confirm('Apakah Anda Ingin Menghapus Data ini... ?');"><i class="fa fa-trash" style="font-size: 15px; color: white;"></i></a>
-                      </td> -->
-                  </tr>
-                  <?php $i++; ?>
-              <?php endforeach; ?>
-          </tbody>
-      </table>
-    </section>
-
-    <section id="laporan2" class="d-none">
-      <table id="table_idddd" class="table table-striped table-bordered" style="width:100%">
-          <thead>
-              <tr>
-                  <th>No</th>
-                  <th>Nama Penggalangan</th>
-                  <th>Nominal</th>
-                  <th>Keterangan</th>
-                  <th>Tanggal Penyaluran</th>
-                  <!-- <th>Aksi</th> -->
-              </tr>
-          </thead>
-          <tbody>
-              <?php $i = 1;
-              foreach ($penyaluran as $value) : ?>
-                  <tr>
-                      <td><?= $i ?></td>
-                      <td><?= $value['judul'] ?></td>
-                      <td><?= $value['jumlah'] ?></td>
-                      <td><?= $value['keterangan'] ?></td>
-                      <td><?= date('d F Y', strtotime($value['created_date'])) ?></td>
-                      <!-- <td>
-                          <a href="<?= site_url('Petugas/detailDonasi/') . $value['id_donasi']; ?>" class="badge badge-warning"><i class="fa fa-search" style="font-size: 15px; color: white;"></i></a>
-                          <a href="<?= site_url('Petugas/deleteDonasi/') . $value['id_donasi']; ?>" class="badge badge-danger" onclick="return confirm('Apakah Anda Ingin Menghapus Data ini... ?');"><i class="fa fa-trash" style="font-size: 15px; color: white;"></i></a>
-                      </td> -->
-                  </tr>
-                  <?php $i++; ?>
-              <?php endforeach; ?>
-          </tbody>
-      </table>
-    </section>
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
-      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-      <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-      <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-      <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
-      <script src="<?= base_url('assets/vendors/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
-      <script type="text/javascript">
-          $('#table_id').DataTable({
-              dom: 'lBfrtip',
-              buttons: [{
-                      text: 'Print PDF',
-                      extend: 'pdfHtml5',
-                      filename: 'Riwayat Donasi',
-                      exportOptions: {
-                          columns: [0, ':visible']
-                      }
-                  },
-                  {
-                      text: 'Print Excel',
-                      extend: 'excelHtml5',
-                      filename: 'Riwayat Donasi',
-                      exportOptions: {
-                          columns: [0, ':visible']
-                      }
-                  },
-                  {
-                      text: 'Print CSV',
-                      extend: 'csvHtml5',
-                      filename: 'Riwayat Donasi',
-                      exportOptions: {
-                          columns: [0, ':visible']
-                      }
-                  },
-                  {
-                      extend: 'pdfHtml5',
-                      text: 'PDF with logo',
-                      title: 'Prototype - Donasi',
-                      customize: function ( doc ) {
-                          // Splice the image in after the header, but before the table
-                          doc.styles.title = {
-                              color: 'black',
-                              fontSize: '12',
-                              alignment: 'center'
-                          }   
-                          // Data URL generated by http://dataurl.net/#dataurlmaker
-                      }
-                  },
-                  'colvis'
-              ],
-          });
-
-          $('#table_idddd').DataTable({
-              dom: 'lBfrtip',
-              buttons: [{
-                      text: 'Print PDF',
-                      extend: 'pdfHtml5',
-                      filename: 'Riwayat Penyaluran',
-                      exportOptions: {
-                          columns: [0, ':visible']
-                      }
-                  },
-                  {
-                      text: 'Print Excel',
-                      extend: 'excelHtml5',
-                      filename: 'Riwayat Penyaluran',
-                      exportOptions: {
-                          columns: [0, ':visible']
-                      }
-                  },
-                  {
-                      text: 'Print CSV',
-                      extend: 'csvHtml5',
-                      filename: 'Riwayat Penyaluran',
-                      exportOptions: {
-                          columns: [0, ':visible']
-                      }
-                  },
-                  {
-                      extend: 'pdfHtml5',
-                      text: 'PDF with logo',
-                      title: 'Prototype - Donasi',
-                      customize: function ( doc ) {
-                          // Splice the image in after the header, but before the table
-                          doc.styles.title = {
-                              color: 'black',
-                              fontSize: '12',
-                              alignment: 'center'
-                          }   
-                          // Data URL generated by http://dataurl.net/#dataurlmaker
-                      }
-                  },
-                  'colvis'
-              ],
-          });
-      </script>
-
-      <script>
-        function csvLaporan(v) {
-          var csvl = $('#csvlaporan');
-          $.ajax({
-          type: 'POST',
-          url: 'dashboard/csvLaporan',
-          data: {
-            ref: v
-          },
-          success: function(res) {
-            if (res.filename != undefined && res.filename.length > 0) {
-              if (v == 'donasi') {
-                window.open('assets/laporan/donasi.csv');
-              }
-              if (v == 'penyaluran') {
-                window.open('assets/laporan/penyaluran.csv');
-              }
+    <script>
+      function csvLaporan(v) {
+        $.ajax({
+        type: 'POST',
+        url: 'dashboard/csvLaporan',
+        data: {
+          ref: v
+        },
+        success: function(res) {
+          if (res.filename != undefined && res.filename.length > 0) {
+            if (v == 'donasi') {
+              window.open('assets/laporan/donasi.csv');
             }
-          },
-        });
-        }
-      </script>
-
-      <script type="text/javascript">
-        const testbtn = document.getElementById('testbtnlagi')
-        const excel = document.getElementsByClassName('dt-button buttons-excel buttons-html5')
-        const laporan1 = document.getElementById('laporan1')
-        const laporan2 = document.getElementById('laporan2')
-
-        testbtn.addEventListener('click', () => {
-          laporan1.classList.remove('d-none')
-          excel[0].click()
-          laporan1.classList.add('d-none')
-          laporan2.classList.remove('d-none')
-          excel[1].click()
-          laporan2.classList.add('d-none')
-        });
-
-      </script>
-
+            if (v == 'penyaluran') {
+              window.open('assets/laporan/penyaluran.csv');
+            }
+          }
+        },
+      });
+      }
+    </script>
 
     <section class="py-0" id="service">
       <div class="container">
@@ -423,24 +236,11 @@
 
   </main>
 
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-  <script src="<?php echo base_url('assets/assets2/vendors/@popperjs/popper.min.js'); ?>"></script>
-  <script src="<?php echo base_url('assets/assets2/vendors/bootstrap/bootstrap.min.js'); ?>"></script>
-
-
+  <script src="<?= base_url('assets/assets2/vendors/@popperjs/popper.min.js')?>"></script>
+  <script src="<?= base_url('assets/vendors/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
   <script src="<?php echo base_url('assets/assets2/vendors/is/is.min.js'); ?>"></script>
-
   <script src="<?php echo base_url('assets/assets2/vendors/feather-icons/feather.min.js'); ?>"></script>
-
   <script src="<?php echo base_url('assets/assets2/js/theme.js'); ?>"></script>
-
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
 
 
