@@ -47,6 +47,13 @@
                                 <?php $i = 1;
                                 $todaysample = new DateTime("today");
                                 foreach ($penggalanganDana as $value) : ?>
+                                    <?php
+                                    
+                                    $x1 = str_replace("Rp. ","",$value['total_harapan']);
+                                    $x2 = str_replace(".","",$x1);
+                                    $totalpersen = round((intval($value['total_proses'])/intval($x2)) * 100);
+                                    
+                                    ?>
                                     <tr>
                                         <td><?= $i ?></td>
                                         <td><img src="<?= base_url('assets/img/laporan/') . $value['gambar']; ?>" alt="" height="120"></td>
@@ -54,7 +61,7 @@
                                         <td><?= $value['nama'] ?></td>
                                         <td><?= $value['total_harapan'] ?></td>
                                         <td>Rp<?= number_format($value['total_proses'],0,',','.') ?></td>
-                                        <td><?= $value['bar'] ?></td>
+                                        <td><?= $totalpersen . '%'; ?></td>
                                         <!-- <td><?= date('d F Y', strtotime($value['waktu_penggalangan']))  ?></td> -->
                                         <td><?= strtotime(strval($todaysample->format('Y-m-d'))) > strtotime($value['waktu_penggalangan']) ? $value['waktu_penggalangan'] . " " . '(Donasi Sudah Ditutup)' : $value['waktu_penggalangan'] ?></td>
                                         <td><?= $value['jml_donatur'] ?></td>
@@ -337,13 +344,13 @@
                                                 <input type="text" name="total_harapan" id="total_harapan" value="<?= $value['total_harapan'] ?>" required class="form-control uang">
                                             </div>
                                         </div>
-                                        <div class="item form-group">
+                                        <!-- <div class="item form-group">
                                             <div class="col-md-12 col-sm-12 ">
                                                 <label>Bar<span class="required">*</span>
                                                 </label>
                                                 <input type="text" name="bar" id="bar" value="<?= $value['bar'] ?>" required class="form-control">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="item form-group">
                                             <div class="col-md-12 col-sm-12 ">
                                                 <label>Batas Waktu Penggalangan<span class="required">*</span>

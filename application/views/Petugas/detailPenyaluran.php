@@ -36,16 +36,22 @@
                         <div class="card">
                             <img class="card-img-top" src="<?= base_url('assets/img/laporan/') . $value['gambar']; ?>" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $value['judul'] ?></h5>
-
+                                <h5 class="card-title"><?= $value['judul']; ?></h5>
+                                
                                 <?php
                                     $id_penggalangan = $value['id_penggalangan'];
                                     $donasi = $this->db->query("SELECT SUM(nominal) as total FROM tbl_donasi WHERE id_penggalangan = $id_penggalangan AND status = 'Diterima' ")->row_array();
                                 ?>
 
-                                <p class="card-text" id="totalProses">Rp<?= number_format($donasi['total'] - $totalpenyaluran, 0, ',', '.');  ?> &nbsp;&nbsp;Terkumpul dari &nbsp;&nbsp; <?= $value['total_harapan'] ?></p>
+                                <?php
+                                    $x1 = str_replace("Rp. ","",$value['total_harapan']);
+                                    $x2 = str_replace(".","",$x1);
+                                    $totalpersen = round((intval($value['total_proses'])/intval($x2)) * 100);
+                                ?>
+
+                                <p class="card-text" id="totalProses">Rp<?= number_format($donasi['total'] - $totalpenyaluran, 0, ',', '.');  ?> &nbsp;&nbsp;Terkumpul dari &nbsp;&nbsp; <?= $value['total_harapan']; ?></p>
                                 <div class="progress mt-4 mb-4">
-                                    <div class="progress-bar" id="prosesBar" style="width:<?= $value['bar'] ?>"><?= $value['bar'] ?></div>
+                                    <div class="progress-bar" id="prosesBar" style="width:<?= $totalpersen >= 100 ? 100 : $totalpersen ?>%"><?= $totalpersen >= 100 ? 100 : $totalpersen ?>%</div>
                                 </div>
                                 <div class="col-lg-12 mb-2">
                                     <div class="row">

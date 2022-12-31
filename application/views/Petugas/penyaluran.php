@@ -39,8 +39,9 @@
                                         $total_harapan2 = str_replace('.', '', $total_harapan1);
                                         $total = intval($total_harapan2);
                                     ?>
+
                                     <?php
-                                        $totalpersen = ($value['total_proses']/$total) * 100;
+                                        $totalpersen = round(($value['total_proses']/$total) * 100);
                                     ?>
 
                                     <div class="progress-bar" id="prosesBar" style="width:<?= $totalpersen >= 100 ? 100 : $totalpersen ?>%"><?= $totalpersen >= 100 ? 100 : $totalpersen ?>%</div>
