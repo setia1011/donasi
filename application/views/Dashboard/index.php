@@ -11,9 +11,13 @@
 
 
   <title>Donasi</title>
+  <link rel="stylesheet" href="<?php echo base_url('assets/vendors/font-awesome/css/font-awesome.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/assets2/css/theme.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/test.css'); ?>">
   <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
+  
+  
   <style>
     .dropdown-menu {
       top: 162% !important;
@@ -95,20 +99,7 @@
           <div class="row">
             <div class="col-md-12">
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <?php
-                  foreach ($banners as $key => $value) : ?>
-                    <?php
-                      $active = $key == 0 ? 'active' : '';
-                    ?>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $active?>"></li>
-                  
-                  <?php endforeach; ?>
-                  
-                  <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-                </ol>
+                
 
                 <div class="carousel-inner">
                   <?php
@@ -122,6 +113,16 @@
                   <?php endforeach; ?>
 
                 </div>
+
+                <ol class="carousel-indicators">
+                  <?php
+                  foreach ($banners as $key => $value) : ?>
+                    <?php
+                      $active = $key == 0 ? 'active' : '';
+                    ?>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $active?>"></li>
+                  <?php endforeach; ?>
+                </ol>
               </div>
             </div>
           </div>
@@ -225,14 +226,31 @@
       </a>
     </div>
 
-    <footer class="mt-3">
-      <div style="width:100%; text-align:center;">
-        <p>All rights Reserved &copy; 2022 </p>
+    <footer class="mt-3 footerx">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <span>&copy; 2022 | donasi.id</span>
+          </div>
+          <div class="col-6">
+            <ul class="address">
+              <li>
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <span>Jl. Raya Senayan No. 113, Kebayoran Baru, South Jakarta City, Jakarta</span>
+              </li>
+              <li>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <span>+6285715100485</span>
+              </li>
+              <li>
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                  <span>contact@Prototype.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
-
-
-
 
   </main>
 

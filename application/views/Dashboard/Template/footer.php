@@ -1,6 +1,26 @@
-<footer class="mt-5">
-  <div style="width:100%; text-align:center;">
-    <p>All rights Reserved &copy; 2022 </p>
+<footer class="mt-3 footerx">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <span>&copy; 2022 | donasi.id</span>
+      </div>
+      <div class="col-6">
+        <ul class="address">
+          <li>
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span>Jl. Raya Senayan No. 113, Kebayoran Baru, South Jakarta City, Jakarta</span>
+          </li>
+          <li>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>+6285715100485</span>
+          </li>
+          <li>
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <span>contact@Prototype.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </footer>
 

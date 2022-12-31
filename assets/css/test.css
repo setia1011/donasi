@@ -1,0 +1,46 @@
+.address li .fa {
+    float: left;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    color: #0099cc;
+    line-height: 36px;
+    text-align: center;
+    background: #000000;
+    border: 1px solid #272727;
+    border-radius: 2px;
+    margin-right: 14px;
+}
+
+.address li {
+    list-style: none;
+    display: table;
+    margin-bottom: 10px;
+}
+
+.footerx {
+    background-color: #222627;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.footerx span {
+    color: white;
+}
+
+#carouselExampleIndicators {
+    margin-top: 88px;
+    padding: 0 30px;
+}
+
+.carousel-item img {
+    height: 500px;
+}
+
+.carousel-indicators {
+    justify-content: center;
+}
+
+.carousel-indicators li {
+    background-color: #000000;
+}

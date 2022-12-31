@@ -8,9 +8,14 @@
   <meta name="theme-color" content="#ffffff">
   <!-- <link rel="icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>" type="image/ico" /> -->
   <title>Donasi</title>
+
+  <link rel="stylesheet" href="<?php echo base_url('assets/vendors/font-awesome/css/font-awesome.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/assets2/css/theme.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/test.css'); ?>">
+
   <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
+
   <style>
     .dropdown-menu {
       top: 162% !important;
