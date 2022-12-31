@@ -36,15 +36,11 @@ if ($this->session->userdata('admin')) {
 
   <!-- Custom Theme Style -->
   <link href="<?php echo base_url('assets/build/css/custom.min.css') ?>" rel="stylesheet">
+  <link rel="stylesheet" href="<?= base_url('assets/vendors/fullcalendar/dist/fullcalendar.min.css'); ?>"/>
+  <link rel="stylesheet" href="<?= base_url('assets/vendors/bootstrap-datepicker/css/bootstrap-datepicker.min.css') ?>"/>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-KXkS7cFeWpYwcoXxyfOumLyRGXMp7BTMTjwrgjMg0+hls4thG2JGzRgQtRfnAuKTn2KWTDZX4UdPg+xTs8k80Q==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g==" crossorigin="anonymous" />
-
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-
-  <!-- <?php echo base_url('') ?> -->
+  <script src="<?= base_url('assets/vendors/jquery/dist/jquery.min.js'); ?>"></script>
+  <link rel="stylesheet" href="<?= base_url('assets/vendors/morris.js/morris.css'); ?>">
 
 </head>
 
